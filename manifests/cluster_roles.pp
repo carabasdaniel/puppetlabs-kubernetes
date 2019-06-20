@@ -23,6 +23,7 @@ class kubernetes::cluster_roles (
   if $controller {
     kubernetes::kubeadm_init { $node_name:
       ignore_preflight_errors => $preflight_errors,
+      cri_socket              => $cri_socket,
       env                     => $env,
       }
     }

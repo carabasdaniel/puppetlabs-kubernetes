@@ -110,6 +110,11 @@ class kubernetes::packages (
     }
   } elsif $container_runtime == 'crio' and $manage_crio == true {
 
+    package { 'toml-rb':
+    ensure   => present,
+    provider => 'puppet_gem',
+    }
+
     package { $crio_package_name:
       ensure          => $crio_version,
       install_options => $crio_install_options,

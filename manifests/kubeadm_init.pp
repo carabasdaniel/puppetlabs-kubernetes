@@ -6,9 +6,11 @@ define kubernetes::kubeadm_init (
   Array $path                                   = $kubernetes::default_path,
   Optional[Array] $env                          = $kubernetes::environment,
   Optional[Array] $ignore_preflight_errors      = $kubernetes::ignore_preflight_errors,
+  Optional[String] $cri_socket                  = undef,
 ) {
   $kubeadm_init_flags = kubeadm_init_flags({
     config                  => $config,
+    cri_socket              => $cri_socket,
     dry_run                 => $dry_run,
     ignore_preflight_errors => $ignore_preflight_errors,
   })
